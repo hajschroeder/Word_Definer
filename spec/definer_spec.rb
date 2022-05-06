@@ -59,4 +59,17 @@ describe '#Word' do
       expect(word_one.word).to eq("foobarbaz")
     end
   end
+
+  describe '#delete' do 
+    it("deletes a word by ID") do 
+      word_one = Word.new("foo", nil)
+      word_one.save()
+      word_two = Word.new("bar", nil)
+      word_two.save()
+      word_three = Word.new("baz", nil)
+      word_three.save()
+      word_one.delete()
+      expect(Word.all).to eq([word_two, word_three])
+    end
+  end
 end
