@@ -72,4 +72,16 @@ describe '#Word' do
       expect(Word.all).to eq([word_two, word_three])
     end
   end
+
+  describe '.search' do 
+    it("searches for a word") do
+      word_one = Word.new("lorem", nil)
+      word_one.save()
+      word_two = Word.new("ipsum", nil)
+      word_two.save()
+      word_three = Word.new("foobar", nil)
+      word_three.save()
+      expect(Word.search(word_one.word)).to eq(word)
+    end
+  end
 end
