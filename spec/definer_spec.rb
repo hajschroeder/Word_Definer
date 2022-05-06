@@ -18,4 +18,12 @@ describe '#Word' do
       expect(Word.all).to eq([word, word_two])
     end
   end
+
+  describe('#==') do 
+    it("is the same word if it has the same attributes an another") do 
+      word = Word.new("foobar", nil)
+      word_two = Word.new("foobar", nil)
+      expect(word).to eq(word_two)
+    end
+  end
 end
