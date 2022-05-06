@@ -2,6 +2,9 @@ require 'rspec'
 require 'definer'
 
 describe '#Word' do 
+  before(:each) do
+    Word.clear()
+  end
 
   describe '.all' do
     it("returns an empty array when there are no words") do 
@@ -35,6 +38,16 @@ describe '#Word' do
       word_two.save()
       Word.clear()
       expect(Word.all).to eq([])
+    end
+  end
+
+  describe '.find' do
+    it("finds a word by ID") do
+      word = Word.new("foo", nil)
+      word.save()
+      word_two = Word.new("bar", nil)
+      word_two.save()
+      expect(Word.find(word.id)).to eq(word)
     end
   end
 end
