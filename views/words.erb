@@ -1,0 +1,15 @@
+<h1>Word Definition Maker Upper</h1>
+
+<h3>Your Words</h3>
+
+<% if @user_words.any? %>
+  <ul>
+    <% @user_words.each do |input| %>
+      <li><%= input.word %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no words to display.</p>
+<% end %>
+
+<a href="/words/new">Add a new word</a>
