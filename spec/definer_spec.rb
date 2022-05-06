@@ -19,11 +19,22 @@ describe '#Word' do
     end
   end
 
-  describe('#==') do 
+  describe '#==' do 
     it("is the same word if it has the same attributes an another") do 
       word = Word.new("foobar", nil)
       word_two = Word.new("foobar", nil)
       expect(word).to eq(word_two)
+    end
+  end
+
+  describe '.clear' do 
+    it("clears all words") do 
+      word = Word.new("foo", nil) 
+      word.save()
+      word_two = Word.new("bar", nil)
+      word_two.save()
+      Word.clear()
+      expect(Word.all).to eq([])
     end
   end
 end
