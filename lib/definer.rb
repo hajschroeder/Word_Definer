@@ -36,4 +36,10 @@ class Word
   def delete
     @@words.delete(self.id)
   end
+
+  def self.search(inpt_wrd)
+    results = []
+    search_params =  @@words.find { |el| el[1].word == inpt_wrd }
+    results.push(search_params[1])
+  end
 end
