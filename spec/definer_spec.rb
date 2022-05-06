@@ -81,7 +81,7 @@ describe '#Word' do
       word_two.save()
       word_three = Word.new("foobar", nil)
       word_three.save()
-      expect(Word.search(word_one.word)).to eq(word)
+      expect(Word.search("lorem")).to eq(word_one)
     end
   end
 end
