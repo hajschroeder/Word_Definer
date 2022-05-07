@@ -22,7 +22,7 @@ get '/words/new' do
 end
 
 get '/words/:id' do
-  "this will show the word based on its ID. Value will be #{params[:id]}"
+  @word = Word.find(params[:id].to_i())
 end
 
 post '/words' do
