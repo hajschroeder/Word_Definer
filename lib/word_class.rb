@@ -42,4 +42,8 @@ class Word
     search_params =  @@words.find { |el| el[1].word == inpt_wrd }
     results.push(search_params[1])
   end
+
+  def definitions
+    Definition.find_by_word(self.id)
+  end
 end

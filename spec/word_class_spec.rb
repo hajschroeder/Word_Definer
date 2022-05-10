@@ -89,13 +89,15 @@ describe '#Word' do
 
   describe '#definitions' do
     it ("returns a word's definitions") do
+      Definition.clear()
       word_one = Word.new("lorem", nil)
       word_one.save()
       definition_one = Definition.new("A quick brown fox", word_one.id, nil)
       definition_one.save
-      definition_two =  Definition.new("The act of jumping over a lazy dog", word_one.i, nil)
+      definition_two =  Definition.new("The act of jumping over a lazy dog", word_one.id, nil)
       definition_two.save
       expect(word_one.definitions).to eq([definition_one, definition_two])
     end
   end
 end
+
