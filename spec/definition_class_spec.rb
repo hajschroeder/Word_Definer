@@ -34,7 +34,7 @@ describe '#Definition' do
       definition_two = Definition.new("The act of jumping over a lazy dog", @word.id, nil)
       definition_two.save()
       expect(Definition.find(definition.id)).to eq(definition)
-      expect(Definition.find(definition_two.id)).to eq(defintion_two)
+      expect(Definition.find(definition_two.id)).to eq(definition_two)
     end
   end
 
@@ -43,7 +43,7 @@ describe '#Definition' do
       definition = Definition.new("A quick brown fox", @word.id, nil)
       definition.save()
       definition.update("The act of jumping over a lazy dog", @word.id, nil)
-      expeect(definition.word).to eq("The act of jumping over a lazy dog")
+      expect(definition.name).to eq("The act of jumping over a lazy dog")
     end
   end
   
@@ -55,6 +55,18 @@ describe '#Definition' do
       definition_two.save()
       definition.delete()
       expect(Definition.all).to eq([definition_two])
+    end
+  end
+
+  describe('.find_by_word') do 
+    it ("finds definitions for a word") do 
+      word_two = Word.new("foobarbaz", nil)
+      word_two.save
+      definition = Definition.new("A quick brown fox", @word.id, nil)
+      definition.save
+      definition_two = Definition.new("The act of jumping over a lazy dog", word_two.id, nil)
+      definition_two.save
+      expect(Definition.find_by_word(word_two.id)).to eq([definition_two])
     end
   end
 end
