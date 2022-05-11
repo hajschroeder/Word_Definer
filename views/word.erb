@@ -1,4 +1,28 @@
-<h2>Here is a word: <%= @word_clicked.word %>
+<h2>Word <%= @word_clicked.word %></h2>
 
-<p><a href = "/words/<%=@word_clicked.id %>/edit">Edit word</a></p>
-<a href="/words">Back to the list</a>
+<h3>Word Definitions</h3>
+
+  <% if @word_clicked.definitions %>
+    <ul>
+      <% @word_clicked.definitions.each do |definition| %>
+        <li><a href="/words/<%= @word_clicked.id %>/definitions/<%= definition.id %>"><%= definition.name %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no definitions listed for this word yet.</p>
+  <% end %>
+
+<h4>Add a definition:</h4>
+
+<form action="/words/<%= @word_clicked.id %>/definitions" method="post">
+  <div class="form-group">
+    <label for="definition_name">Definition</label>
+    <input id="definition_name" name="definition_name" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn">Add definition</button>
+</form>
+
+
+
+<p><a href="/words/<%= @word_clicked.id %>/edit">Edit word</a></p>
+<p><a href="/words">Return to word list</a></p>

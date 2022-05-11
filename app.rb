@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 require 'sinatra'
 require 'sinatra/reloader'
-require './lib/definer'
+require './lib/word_class'
+require './lib/definition_class'
 require 'pry'
 also_reload 'lib/**/*.rb'
 puts "let's do this"
@@ -22,7 +23,8 @@ get '/words/new' do
 end
 
 get '/words/:id' do
-  @word = Word.find(params[:id].to_i())
+  @word_clicked = Word.find(params[:id].to_i())
+  erb(:word)
 end
 
 post '/words' do
@@ -34,15 +36,48 @@ post '/words' do
 end
 
 get '/words/:id/edit' do
-  "this will take us to a form to updating the ID. #{params[:id]}"
+  @word_clicked = Word.find(params[:id].to_i())
+  erb(:edit_word)
 end
 
 patch '/words/:id' do
-  "this will update the word, we may not need this here but rather for the definitions"
+  @word_clicked = Word.find(params[:id].to_i())
+  @word_clicked.update(params[:word])
+  @user_words= Word.all
+  erb(:words)
 end
 
 delete '/words/:id' do
-  "this will delete a word"
+  @word_clicked = Word.find(params[:id].to_i())
+  @word_clicked.delete()
+  @user_words = Word.all
+  erb(:words)
+end
+
+get '/words/:id/definitions' do
+  @definition = Definition.find(params[:id].to_i())
+  erb(:definition)
+end
+
+post 'words/:id/definitions' do
+  @word_clicked = Word.find(params[:id].to_i())
+  definition = Defnition.new(params[:definition_name], @word.id, nil)
+  definition.save()
+  erb(:word)
+end
+
+patch '/words/:id/definitions/:definition_id' do
+  @word_clicked = Word.find(params[:id].to_i())
+  definition = Definition.find(params[:definition_id].to_i())
+  definition.update(params[:name], @word.id)
+  erb(:word)
+end
+
+delete '/words/:id/definitions/:definition_id' do
+  definition = Definition.find(params[:definition_id].to_i())
+  definition.delete
+  @word_clicked = Word.find(params[:id].to_i())
+  erb(:word)
 end
 
 get '/custom_route' do
