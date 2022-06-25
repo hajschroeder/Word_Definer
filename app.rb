@@ -54,19 +54,19 @@ delete '/words/:id' do
   erb(:words)
 end
 
-get '/words/:id/definitions/:definition_id' do
-  @definition = Definition.find(params[:id].to_i())
+get('/words/:id/definitions/:definition_id') do
+  @definition = Definition.find(params[:definition_id].to_i())
   erb(:definition)
 end
 
-post 'words/:id/definitions' do
+post('/words/:id/definitions') do
   @word_clicked = Word.find(params[:id].to_i())
   definition = Definition.new(params[:definition_name], @word_clicked.id, nil)
   definition.save()
   erb(:word)
 end
 
-patch '/words/:id/definitions/:definition_id' do
+patch('/words/:id/definitions/:definition_id') do
   @word_clicked = Word.find(params[:id].to_i())
   definition = Definition.find(params[:definition_id].to_i())
   definition.update(params[:name], @word_clicked.id)
@@ -80,6 +80,3 @@ delete '/words/:id/definitions/:definition_id' do
   erb(:word)
 end
 
-get '/custom_route' do
-  "what it sounds like. Again, we may not need this, but it's important to remember we have that available to us"
-end
