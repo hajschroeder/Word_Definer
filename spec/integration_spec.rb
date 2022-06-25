@@ -13,7 +13,7 @@ describe('create a word path', {:type => :feature}) do
   end
 end
 
-describe('create an edit word path', {:type => :feature}) do
+describe('edit a word', {:type => :feature}) do
   it('goes to the edit word page and allows the edit') do
     word = Word.new("Ophelia", nil)
     word.save
@@ -24,7 +24,7 @@ describe('create an edit word path', {:type => :feature}) do
   end
 end
 
-describe('create a delete word path', {:type => :feature}) do
+describe('delete a word', {:type => :feature}) do
   it('goes to the edit word page and allows a user to delete') do
     Word.clear()
     word = Word.new("Ophelia", nil)
@@ -48,7 +48,7 @@ describe('create a definition path', {:type => :feature}) do
   end
 end
 
-describe('create a edit definition path', {:type => :feature}) do
+describe('edit a definition', {:type => :feature}) do
   it('goes to the edit word page and allows a user to edit the definition') do
     Word.clear()
     word = Word.new("Ophelia", nil)
@@ -62,7 +62,7 @@ describe('create a edit definition path', {:type => :feature}) do
   end
 end
 
-describe('create a delete definition path', {:type => :feature}) do
+describe('delete a definition', {:type => :feature}) do
   it('goes to the edit definition page and and then allows a user to delete the definition') do
     Word.clear()
     word = Word.new("Ophelia", nil)
