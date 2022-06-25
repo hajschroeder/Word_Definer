@@ -41,7 +41,7 @@ _Note, this will require your local device to have Ruby installed_
 ___
 
 ## Known Bugs
-No known bugs, however the project is unfinished in it's current state. Base functionality has not been achieved, and the website has not been optimized for children. 
+No known bugs.
 
 ---
 
