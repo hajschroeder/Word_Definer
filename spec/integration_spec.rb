@@ -4,8 +4,8 @@ Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
 describe('create a word path', {:type => :feature}) do
-  it('creates an word and then goes to the word page') do
-    visit('/words')
+  it('creates a word and then goes to the word page') do
+    visit('/')
     click_on('Add a new word')
     fill_in('word_name', :with => 'Ophelia')
     click_on('Lets Go!')
@@ -49,7 +49,7 @@ describe('create a definition path', {:type => :feature}) do
 end
 
 describe('create a edit definition path', {:type => :feature}) do
-  it('goes to the edit word page and allows a user to edit it') do
+  it('goes to the edit word page and allows a user to edit the definition') do
     Word.clear()
     word = Word.new("Ophelia", nil)
     word.save()

@@ -69,7 +69,7 @@ end
 patch('/words/:id/definitions/:definition_id') do
   @word_clicked = Word.find(params[:id].to_i())
   definition = Definition.find(params[:definition_id].to_i())
-  definition.update(params[:name], @word_clicked.id)
+  definition.update(params[:name], @word_clicked.id, nil)
   erb(:word)
 end
 
